@@ -12,5 +12,7 @@ Pkg.add("RDatasets") # 700+ datasets from R packages
 
 ## save some data to read in
 import RDatasets, CSV
-cars = RDatasets.dataset("Ecdat","CPSch3")
-CSV.write("income.csv",cars)
+income = RDatasets.dataset("Ecdat","CPSch3")
+CSV.write("income.csv",income) # saves to current working directory
+cars = RDatasets.dataset("MASS","Cars93")
+CSV.write("cars.csv",cars) # saves to current working directory
