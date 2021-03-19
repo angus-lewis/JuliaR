@@ -9,6 +9,7 @@ Pkg.add("Distributions") # julia equivalent of pnorm etc
 Pkg.add("HypothesisTests") # julia equivalents of t.test etc
 Pkg.add("GLM") # the linear models package
 Pkg.add("RDatasets") # 700+ datasets from R packages
+Pkg.add("IterTools") # I used this for all subset regression 
 
 ## save some data to read in
 import RDatasets, CSV
