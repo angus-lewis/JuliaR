@@ -4,26 +4,26 @@ library(leaps)
 library(tictoc)
 setwd("~/Documents/JuliaR")
 
-cars <- read_csv("cars.csv")
+cars <- Cars93
 names(cars)
 
 cars <- cars %>%
-  mutate(City = 235.215/MPGCity) %>%
   filter(Cylinders != "rotary") %>%
   mutate(Cylinders = as.numeric(Cylinders)) %>%
-  select(City, 
+  dplyr::select(MPG.city, 
          Weight, 
          Price, 
          Length, 
-         FuelTankCapacity, 
+         Fuel.tank.capacity, 
          Wheelbase, 
          RPM, 
          Horsepower, 
          EngineSize, 
          Cylinders, 
          Passengers)
+
 tic()
-all <- regsubsets(City~., data = cars)
+all <- regsubsets(MPG.city~., data = cars)
 toc()
 summary(all)
 
@@ -35,7 +35,7 @@ for( ssSize in 1:length(predVars)){
   nModels <- nModels + ncol(predVarsOfssSize)
   for(combination in 1:ncol(predVarsOfssSize)){
     theVars <- predVarsOfssSize[,combination]
-    theFormula <- "City~1"
+    theFormula <- "MPG.city~1"
     for( n in 1:length(theVars) ){
       theFormula <- paste(theFormula, theVars[n], sep = "+")
       lm(as.formula(theFormula), data = cars)
